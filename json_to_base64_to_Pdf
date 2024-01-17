@@ -1,0 +1,37 @@
+lambda base code: https://github.com/DavinJ-0316/final-pro-img-upload
+
+
+
+
+converting a Base64 string to a PDF file in JavaScript. A Base64 string is a text representation of binary data, and it can be converted to a PDF file by using the following steps:
+
+- Decode the Base64 string using the `atob()` function. This will return a binary string.
+- Create a `Uint8Array` from the binary string using the `Uint8Array()` constructor. This will create a typed array of 8-bit unsigned integers that can store the binary data.
+- Create a `Blob` object from the `Uint8Array` using the `Blob()` constructor. This will create a file-like object that can store the binary data with a specified MIME type, such as `application/pdf`.
+- Create a URL from the `Blob` object using the `URL.createObjectURL()` method. This will create a URL that represents the `Blob` object as a local resource.
+- Use the `window.open()` method to open the URL in a new window or tab. This will display the PDF file in the browser.
+
+Here is an example of a JavaScript function that can convert a Base64 string to a PDF file and open it in a new window:
+
+```
+function base64ToPDF(base64String) {
+  // Decode the Base64 string
+  var binaryString = atob(base64String);
+  // Create a Uint8Array from the binary string
+  var byteArray = new Uint8Array(binaryString.length);
+  for (var i = 0; i < binaryString.length; i++) {
+    byteArray[i] = binaryString.charCodeAt(i);
+  }
+  // Create a Blob object from the Uint8Array
+  var blob = new Blob([byteArray], {type: "application/pdf"});
+  // Create a URL from the Blob object
+  var url = URL.createObjectURL(blob);
+  // Open the URL in a new window
+  window.open(url);
+}
+```
+
+You can use this function to convert the Base64 string that you provided to a PDF file. Just copy and paste the following code in your browser's console and press enter:
+
+```
+base64ToPDF("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
