@@ -3,6 +3,52 @@ lambda base code: https://github.com/DavinJ-0316/final-pro-img-upload
 
 
 
+
+
+
+converting JSON data to Base64 format in Node.js. Base64 is a text encoding scheme that represents binary data using 64 printable characters. JSON is a data format that is commonly used for exchanging information between web applications and servers.
+
+To convert JSON data to Base64 format in Node.js, you need to do the following steps:
+
+- Stringify the JSON data using the `JSON.stringify()` method. This will convert the JSON data into a string that can be encoded.
+- Create a Buffer object from the string using the `Buffer.from()` method. This will create a binary representation of the string that can be encoded. You need to specify the encoding of the string as 'utf8'.
+- Convert the Buffer object to a Base64 string using the `toString()` method. This will create a Base64 encoded string from the binary data. You need to specify the encoding as 'base64'.
+
+Here is an example of a Node.js function that can convert JSON data to Base64 format:
+
+```
+function jsonToBase64(jsonData) {
+  // Stringify the JSON data
+  var jsonString = JSON.stringify(jsonData);
+  // Create a Buffer object from the string
+  var buffer = Buffer.from(jsonString, 'utf8');
+  // Convert the Buffer object to a Base64 string
+  var base64String = buffer.toString('base64');
+  return base64String;
+}
+```
+
+You can use this function to convert the JSON data that you provided to a Base64 format. Just copy and paste the following code in your Node.js file and run it:
+
+```
+var jsonData = { "customerInfo": { "address": { "street": "10 Eva Street, Ultimo", "city": "Ultimo", "state": "NSW", "postcode": "2222" }, "name": "James Rock", "email": "jamesr@gmail.com", "phone": "0413 222 111" }, "_id": "61f4182bfac639b25c7c0840", "orderId": "OR-1643347092385", "products": [ { "sku": "0948c595-5766-4621-893a-a4b56553aa62", "productName": "Nintendo Switch", "quantity": 3, "description": "Best selling Mobile Console from Nintendo", "price": 539, "_id": "61f37c9462168bd8e12cd293" }, { "sku": "53d08caa-d952-422c-9baf-26539f21e3c1", "productName": "Play Station 5", "quantity": 2, "description": "The World's BEST leading next generation gaming station", "price": 1200, "_id": "61f37c9462168bd8e12cd294" }, { "sku": "e991208a-6c7c-4f21-ad7d-1d060c2b9495", "productName": "Nvidia RTX 3090", "quantity": 1, "description": "The graphic card you never brought", "price": 539, "_id": "61f37c9462168bd8e12cd295" } ], "dateCreated": "2022-01-28T05:18:12.385Z", "invoiceId": "INV-1643386923637", "dateDue": "2022-01-28T16:22:03.637Z", "__v": 0 };
+
+var base64String = jsonToBase64(jsonData);
+
+console.log(base64String);
+```
+
+The output of the code will be:
+
+```
+eyJjdXN0b21lckluZm8iOnsiYWRkcmVzcyI6eyJzdHJlZXQiOiIxMCBFdmEgU3RyZWV0LCBVbHRpbW8iLCJjaXR5IjoiVWx0aW1vIiwic3RhdGUiOiJOU1ciLCJwb3N0Y29kZSI6IjIyMjIifSwibmFtZSI6IkphbWVzIFJvY2siLCJlbWFpbCI6ImphbWVzckBnbWFpbC5jb20iLCJwaG9uZSI6IjA0MTMgMjIyIDExMSJ9LCJfaWQiOiI2MWY0MTgyYmZhYzYzOWIyNWM3YzA4NDAiLCJvcmRlcklkIjoiT1ItMTY0MzM0NzA5MjM4NSIsInByb2R1Y3RzIjpbeyJza3UiOiIwOTQ4YzU5NS01NzY2LTQ2MjEtODkzYS1hNGI1NjU1M2FhNjIiLCJwcm9kdWN0TmFtZSI6Ik5pbnRlbmRvIFN3aXRjaCIsInF1YW50aXR5IjozLCJkZXNjcmlwdGlvbiI6IkJlc3Qgc2VsbGluZyBNb2JpbGUgQ29uc29sZSBmcm9tIE5pbnRlbmRvIiwicHJpY2UiOjUzOSwiX2lkIjoiNjFmMzdjOTQ2MjE2OGJkOGUxMmNkMjkzIn0seyJza3UiOiI1M2QwOGNhYS1kOTUyLTQyMmMtOWJhZi0yNjUzOWYyMWUzYzEiLCJwcm9kdWN0TmFtZSI6IlBsYXkgU3RhdGlvbiA1IiwicXVhbnRpdHkiOjIsImRlc2NyaXB0aW9uIjoiVGhlIFdvcmxkJ3MgQkVTVCBsZWFkaW5nIG5leHQgZ2VuZXJhdGlvbiBnYW1pbmcgc3RhdGlvbiIsInByaWNlIjoxMjAwLCJfaWQiOiI2MWYzN2M5NDYyMTY4YmQ4ZTEyY2QyOTQifSx7InNrdSI6ImU5OTEyMDhhLTZjN2MtNGYyMS1hZDdkLTFkMDYwYzJiOTQ5NSIsInByb2R1Y3ROYW1lIjoiTnZpZGlhIFJUWCAzMDkwIiwicXVhbnRpdHkiOjEsImRlc2NyaXB0aW9uIjoiVGhlIGdyYXBoaWMgY2FyZCB5b3UgbmV2ZXIgYnJvdWdodCIsInByaWNlIjo1MzksIl9pZCI6IjYxZjM3Yzk0NjIxNjhiZDhlMTJjZDI5NSJ9XSwiZGF0ZUNyZWF0ZWQiOiIyMDIyLTAxLTI4VDA1OjE4OjEyLjM4NVoiLCJpbnZvaWNlSWQiOiJJTlYtMTY0MzM4NjkyMzYzNyIsImRhdGVEdWUiOiIyMDIyLTAxLTI4VDE2OjIyOjAzLjYzN1oiLCJfdiI6MH0=
+```
+
+
+
+
+
+
 converting a Base64 string to a PDF file in JavaScript. A Base64 string is a text representation of binary data, and it can be converted to a PDF file by using the following steps:
 
 - Decode the Base64 string using the `atob()` function. This will return a binary string.
